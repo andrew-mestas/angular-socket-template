@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+  <html lang="en" ng-app="myApp">
+  <div ng-include="'views/includes/head.html'"></div>
+  <body class="Site">
+    <div ng-include="'views/includes/header.html'"></div>
+    <main class="Site-content">
+      <div>
+        <div ng-view></div>
+      </div>    
+    </main>
+    <div ng-include="'views/includes/footer.html'"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+    <script src="scripts/socket.io-client/dist/socket.io.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/services.js"></script>
+    <script src="app/directives.js"></script>
+    <script src="app/controllers/homeCtrl.js"></script>
+    
+    <script>
+      var socket = io.connect('http://localhost:3000');
+      socket.on('connect', function () {
+        socket.send('hi');
+
+        socket.on('message', function (msg) {
+          // my msg
+        });
+      });
+    </script>
+  </body>
+</html>
